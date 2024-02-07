@@ -16,7 +16,7 @@ class SDSSData:
         # Fourth column (ignored): square roots of the diagonal elements
         # of the covariance matrix. We use the full covariance matrix instead.
         # Fifth column (ignored): The amount of foreground noise power subtracted from each bin.
-        # Sixth column (ignored): The amound of background power subtracted from each bin.
+        # Sixth column (ignored): The amount of background power subtracted from each bin.
         # A metal contamination subtraction that McDonald does but we don't.
         cdir = os.path.dirname(__file__)
         datafile = os.path.join(cdir,datafile)
