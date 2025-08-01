@@ -1,6 +1,10 @@
 """Module to load the covariance matrix (from BOSS DR9 or SDSS DR5 data) from tables."""
 import os.path
-import pandas
+import math
+try:
+    import pandas
+except ImportError:
+    pandas = None
 import numpy as np
 import numpy.testing as npt
 
@@ -140,6 +144,8 @@ class KSData(SDSSData):
     def __init__(self, datafile=None, conservative=True):
         cdir = os.path.dirname(__file__)
         # data from the supplementary material in Karacayli+21](https://academic.oup.com/mnras/article/509/2/2842/6425772)
+        if pandas is None:
+            raise ImportError("Could not import pandas")
         if conservative:
             datafile = os.path.join(cdir,"data/kodiaq_squad/final-conservative-p1d-karacayli_etal2021.txt")
             # Read KODIAQ-SQUAD flux power data.
@@ -217,7 +223,7 @@ class DESIEDRData(SDSSData):
             self.covar_diag = np.diag(self.covar)
         else:
             # data from the supplementary material of https://arxiv.org/pdf/2306.06311.pdf
-            #here https://zenodo.org/record/8020269
+            # here https://zenodo.org/record/8020269
             datafile = os.path.join(cdir,"data/desi_edrp_fft_data/p1d_measurement.txt")
             # Read DESI flux power data.
             # Column #1 : redshift
