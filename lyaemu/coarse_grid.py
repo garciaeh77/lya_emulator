@@ -417,7 +417,7 @@ class Emulator:
         load.close()
         assert name.rsplit(".", maxsplit=1)[-1] == str(self.__class__).rsplit(".", maxsplit=1)[-1]
         assert np.shape(inparams) == np.shape(aparams)
-        assert np.all(inparams - aparams < 1e-3)
+        assert np.all(np.abs(inparams - aparams) < 1e-3)
         return kfmpc, kfkms, flux_vectors
 
     def generate_loo_errors(self, HRemu=None, min_z=2.2, max_z=4.6):
