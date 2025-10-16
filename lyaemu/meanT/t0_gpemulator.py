@@ -4,7 +4,7 @@ from ..latin_hypercube import map_to_unit_cube_list
 from ..gpemulator import convert_parameter_fidelity_list, LinearMultiFidelityKernel
 import torch
 import gpytorch
-import gpytorch.kern as kern
+import gpytorch.kernels as kern
 
 class ExactGPAR1(gpytorch.models.ExactGP):
     """Subclass the exact inference GP with the kernel we want."""
