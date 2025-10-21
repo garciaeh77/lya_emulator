@@ -11,7 +11,7 @@ setup(
     long_description="Module for easily generating emulators for the lyman alpha forest from simulations",
     long_description_content_type = "text/plain",
     packages = ['lyaemu', 'lyaemu.tests', 'lyaemu.SimulationRunner.SimulationRunner', 'lyaemu.meanT'],
-    requires=['numpy', 'fake_spectra','scipy', "gpytorch", "cobaya", "h5py"],
+    requires=['numpy', 'fake_spectra','scipy', "gpytorch", "cobaya", "h5py", 'fitsio', 'classy'],
     package_data = {
             'lyaemu': ['data/boss_dr*_data/*.dat','data/desi*/*.txt', 'data/kodiaq_squad/*.txt','data/xq100/*.csv','data/*', 'data/Gaikwad/Gaikwad_2020b_T0_Evolution_All_Statistics.txt'],
            },
