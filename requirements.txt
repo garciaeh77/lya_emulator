@@ -1,0 +1,10 @@
+numpy
+scipy
+h5py
+matplotlib
+astropy
+configobj
+mpi4py
+cobaya
+fake_spectra
+torch
