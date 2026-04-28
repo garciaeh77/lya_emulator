@@ -1,0 +1,21 @@
+Fisher forecast summary — Union3 DDE tilt
+==================================================
+S/N with BOSS DR14:          0.2287
+S/N with DESI DR2 (2x):      0.3235
+Covariance scale for 2sigma: 0.0131
+Data volume for 2sigma:      76.5x BOSS DR14
+
+Per-redshift-bin S/N:
+  z = 4.600   S/N = 0.0000
+  z = 4.400   S/N = 0.0000
+  z = 4.200   S/N = 0.0000
+  z = 4.000   S/N = 0.0315
+  z = 3.800   S/N = 0.0372
+  z = 3.600   S/N = 0.0452
+  z = 3.400   S/N = 0.0478
+  z = 3.200   S/N = 0.0535
+  z = 3.000   S/N = 0.0709
+  z = 2.800   S/N = 0.0837
+  z = 2.600   S/N = 0.0936
+  z = 2.400   S/N = 0.1030
+  z = 2.200   S/N = 0.1065

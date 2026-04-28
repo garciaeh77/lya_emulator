@@ -1,0 +1,25 @@
+Fisher forecast summary — Union3 DDE tilt (all_zbins)
+==================================================
+min_z = 2.2
+max_z = 4.6
+Total data points: 455
+
+S/N with BOSS DR14:          0.228721
+S/N with DESI DR2 (2x):      0.323461
+S/N with DESI full (10x):    0.723280
+Data volume for 2-sigma:     76.5x BOSS DR14
+
+Per-redshift-bin S/N:
+  z = 4.600   S/N = 0.000000
+  z = 4.400   S/N = 0.000000
+  z = 4.200   S/N = 0.000000
+  z = 4.000   S/N = 0.031529
+  z = 3.800   S/N = 0.037234
+  z = 3.600   S/N = 0.045173
+  z = 3.400   S/N = 0.047795
+  z = 3.200   S/N = 0.053527
+  z = 3.000   S/N = 0.070858
+  z = 2.800   S/N = 0.083681
+  z = 2.600   S/N = 0.093567
+  z = 2.400   S/N = 0.103018
+  z = 2.200   S/N = 0.106545

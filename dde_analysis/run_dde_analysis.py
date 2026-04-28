@@ -28,7 +28,7 @@ MIN_Z    = 2.2
 MAX_Z    = 4.6
 
 # Best-fit parameter vector — set to None to use midpoint of ranges as test
-PARAMS_BESTFIT = None
+PARAMS_BESTFIT = list(np.loadtxt("dde_analysis/results/bestfit_from_chains.txt"))
 
 # Template amplitude grid for profile likelihood scan
 EPSILON_GRID = np.linspace(0, 2, 21)

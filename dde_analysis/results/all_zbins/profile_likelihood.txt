@@ -1,3 +1,4 @@
+# Profile likelihood (all_zbins)
 # epsilon  delta_chi2
 0.000000 0.000000
 0.100000 2.943831
