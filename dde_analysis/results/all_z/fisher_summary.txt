@@ -1,12 +1,12 @@
-Fisher forecast — no_z2p2
+Fisher forecast — all_z
 ==================================================
-min_z = 2.4   n_zbins = 12
-Total data points: 420
+min_z = 2.2   n_zbins = 13
+Total data points: 455
 
-S/N BOSS DR14:          0.202390
-S/N DESI DR2 (2x):      0.286222
-S/N DESI full (10x):    0.640013
-Data volume for 2-sigma: 97.7x BOSS DR14
+S/N BOSS DR14:          0.228721
+S/N DESI DR2 (2x):      0.323461
+S/N DESI full (10x):    0.723280
+Data volume for 2-sigma: 76.5x BOSS DR14
 
 Per-redshift-bin S/N:
   z=4.600   S/N=0.000000
@@ -21,3 +21,4 @@ Per-redshift-bin S/N:
   z=2.800   S/N=0.083681
   z=2.600   S/N=0.093567
   z=2.400   S/N=0.103018
+  z=2.200   S/N=0.106545
