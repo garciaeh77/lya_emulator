@@ -49,6 +49,14 @@ class DDELikelihood(LikelihoodClass):
         else:
             tau0_fac = None
 
+        # Keep only parameters used by the GP emulator:
+        #   [tau0, ns, Ap, herei, heref, alphaq, hub, omegamh2, hireionz, bhfeedback]
+        # If full likelihood parameters are passed (including nuisance terms),
+        # drop trailing nuisance values before calling gpemu.predict.
+        n_gp = len(self.emulator.mf.dense_param_names) + len(self.emulator.param_names)
+        if np.size(nparams) > n_gp:
+            nparams = np.asarray(nparams)[:n_gp]
+
         # ── Step 2: get raw GP prediction in Mpc/h units ─────────────────
         predicted_nat, std_nat = self.gpemu.predict(
             np.array(nparams).reshape(1, -1),

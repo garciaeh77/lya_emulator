@@ -1,0 +1,24 @@
+Full P1D Fisher forecast using bestfit_from_chains
+========================================================
+Params file: /Users/helenagescu/lya_emulator/dde_analysis/results/bestfit_from_chains.txt
+min_z=2.2, max_z=4.6
+Signal: P_bestfit * (T-1)
+
+(S/N)^2 = 22.532235
+S/N     = 4.746813
+Need Nx = 0.18x BOSS DR14
+
+Per-bin S/N:
+  z=4.600  S/N=0.000000
+  z=4.400  S/N=0.000000
+  z=4.200  S/N=0.000000
+  z=4.000  S/N=1.474687
+  z=3.800  S/N=1.400782
+  z=3.600  S/N=1.401771
+  z=3.400  S/N=1.246999
+  z=3.200  S/N=1.278779
+  z=3.000  S/N=1.698121
+  z=2.800  S/N=1.846425
+  z=2.600  S/N=1.713499
+  z=2.400  S/N=1.584997
+  z=2.200  S/N=1.224297
