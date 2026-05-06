@@ -1,0 +1,228 @@
+=================================================================
+CORRECTED Fisher forecast — with proper unit handling
+=================================================================
+
+Signal vector: T(k,z) = P_bestfit(k,z) * (ratio(k,z))
+Units: T in km/s, C in (km/s)^2, T^T C^-1 T dimensionless
+
+==================================================
+Configuration: all_z  (min_z=2.2)
+==================================================
+SDSS dr14
+[[-4.00e-01  2.50e-01]
+ [ 7.50e-01  1.25e+00]
+ [ 8.00e-01  1.05e+00]
+ [ 1.20e-09  2.60e-09]
+ [ 3.50e+00  4.10e+00]
+ [ 2.60e+00  3.20e+00]
+ [ 1.30e+00  3.00e+00]
+ [ 6.50e-01  7.50e-01]
+ [ 1.40e-01  1.46e-01]
+ [ 6.50e+00  8.00e+00]
+ [ 3.00e-02  7.00e-02]
+ [-1.00e+00  1.00e+00]
+ [-3.00e-01  3.00e-01]
+ [-3.00e-02  3.00e-02]]
+Beginning to generate emulator at 2026-05-04 15:55:05.211499
+Loading flux powers from:  /Users/helenagescu/lya_emulator/dtau-48-48/mf_emulator_flux_vectors.hdf5
+Number of redshifts for emulator generation=13 nk= 102
+Loading pre-trained GP for z:4.6
+Loading pre-trained GP for z:4.4
+Loading pre-trained GP for z:4.2
+Loading pre-trained GP for z:4.0
+Loading pre-trained GP for z:3.8
+Loading pre-trained GP for z:3.6
+Loading pre-trained GP for z:3.4
+Loading pre-trained GP for z:3.2
+Loading pre-trained GP for z:3.0
+Loading pre-trained GP for z:2.8
+Loading pre-trained GP for z:2.6
+Loading pre-trained GP for z:2.4
+Loading pre-trained GP for z:2.2
+Finished generating emulator at 2026-05-04 15:55:05.765564
+Loaded params from bestfit_z2.2-4.6.txt
+  Using 11 params for emulator prediction
+  Found 3 nuisance params for data corrections
+Redshift bins: [4.6 4.4 4.2 4.  3.8 3.6 3.4 3.2 3.  2.8 2.6 2.4 2.2]
+k modes per bin: 35
+P(k) range: [6.0577, 197.2475] km/s
+
+Dimensionless ratio range: [-0.0365, 0.0185]
+Physical signal T range:   [-1.814761, 0.463687] km/s
+Covariance diagonal range: [1.0383e-01, 7.3894e+02] (km/s)^2
+Signal^2 / variance range: [0.000000e+00, 7.863163e-01]  (dimensionless)
+
+CORRECTED Fisher results:
+  (S/N)^2       = 23.226802
+  S/N           = 4.819419
+  S/N DESI DR2  = 6.815688
+  S/N DESI full = 15.240342
+  Need Nx       = 0.2x BOSS DR14
+
+  Per-bin S/N:
+    z=4.60  S/N=0.000000
+    z=4.40  S/N=0.000000
+    z=4.20  S/N=0.000000
+    z=4.00  S/N=1.412462
+    z=3.80  S/N=1.376890
+    z=3.60  S/N=1.382497
+    z=3.40  S/N=1.237206
+    z=3.20  S/N=1.285561
+    z=3.00  S/N=1.721335
+    z=2.80  S/N=1.889145
+    z=2.60  S/N=1.785148
+    z=2.40  S/N=1.671959
+    z=2.20  S/N=1.314237
+
+Saved to /Users/helenagescu/lya_emulator/dde_analysis/results/fisher_corrected/fisher_corrected_all_z.txt
+
+==================================================
+Configuration: no_z2p2  (min_z=2.4)
+==================================================
+SDSS dr14
+[[-4.00e-01  2.50e-01]
+ [ 7.50e-01  1.25e+00]
+ [ 8.00e-01  1.05e+00]
+ [ 1.20e-09  2.60e-09]
+ [ 3.50e+00  4.10e+00]
+ [ 2.60e+00  3.20e+00]
+ [ 1.30e+00  3.00e+00]
+ [ 6.50e-01  7.50e-01]
+ [ 1.40e-01  1.46e-01]
+ [ 6.50e+00  8.00e+00]
+ [ 3.00e-02  7.00e-02]
+ [-1.00e+00  1.00e+00]
+ [-3.00e-01  3.00e-01]
+ [-3.00e-02  3.00e-02]]
+Beginning to generate emulator at 2026-05-04 15:55:08.478066
+Loading flux powers from:  /Users/helenagescu/lya_emulator/dtau-48-48/mf_emulator_flux_vectors.hdf5
+Number of redshifts for emulator generation=12 nk= 102
+Loading pre-trained GP for z:4.6
+Loading pre-trained GP for z:4.4
+Loading pre-trained GP for z:4.2
+Loading pre-trained GP for z:4.0
+Loading pre-trained GP for z:3.8
+Loading pre-trained GP for z:3.6
+Loading pre-trained GP for z:3.4
+Loading pre-trained GP for z:3.2
+Loading pre-trained GP for z:3.0
+Loading pre-trained GP for z:2.8
+Loading pre-trained GP for z:2.6
+Loading pre-trained GP for z:2.4
+Finished generating emulator at 2026-05-04 15:55:08.680707
+Loaded params from bestfit_z2.6-4.6.txt
+  Using 11 params for emulator prediction
+  Found 3 nuisance params for data corrections
+Redshift bins: [4.6 4.4 4.2 4.  3.8 3.6 3.4 3.2 3.  2.8 2.6 2.4]
+k modes per bin: 35
+P(k) range: [6.9105, 198.2619] km/s
+
+Dimensionless ratio range: [-0.0365, 0.0185]
+Physical signal T range:   [-1.856928, 0.463524] km/s
+Covariance diagonal range: [1.0383e-01, 7.3894e+02] (km/s)^2
+Signal^2 / variance range: [0.000000e+00, 7.845141e-01]  (dimensionless)
+
+CORRECTED Fisher results:
+  (S/N)^2       = 21.278006
+  S/N           = 4.612809
+  S/N DESI DR2  = 6.523497
+  S/N DESI full = 14.586982
+  Need Nx       = 0.2x BOSS DR14
+
+  Per-bin S/N:
+    z=4.60  S/N=0.000000
+    z=4.40  S/N=0.000000
+    z=4.20  S/N=0.000000
+    z=4.00  S/N=1.470313
+    z=3.80  S/N=1.389275
+    z=3.60  S/N=1.400295
+    z=3.40  S/N=1.241225
+    z=3.20  S/N=1.277560
+    z=3.00  S/N=1.700307
+    z=2.80  S/N=1.858766
+    z=2.60  S/N=1.746422
+    z=2.40  S/N=1.629856
+
+Saved to /Users/helenagescu/lya_emulator/dde_analysis/results/fisher_corrected/fisher_corrected_no_z2p2.txt
+
+==================================================
+Configuration: no_z2p2_no_z2p4  (min_z=2.6)
+==================================================
+SDSS dr14
+[[-4.00e-01  2.50e-01]
+ [ 7.50e-01  1.25e+00]
+ [ 8.00e-01  1.05e+00]
+ [ 1.20e-09  2.60e-09]
+ [ 3.50e+00  4.10e+00]
+ [ 2.60e+00  3.20e+00]
+ [ 1.30e+00  3.00e+00]
+ [ 6.50e-01  7.50e-01]
+ [ 1.40e-01  1.46e-01]
+ [ 6.50e+00  8.00e+00]
+ [ 3.00e-02  7.00e-02]
+ [-1.00e+00  1.00e+00]
+ [-3.00e-01  3.00e-01]
+ [-3.00e-02  3.00e-02]]
+Beginning to generate emulator at 2026-05-04 15:55:11.351025
+Loading flux powers from:  /Users/helenagescu/lya_emulator/dtau-48-48/mf_emulator_flux_vectors.hdf5
+Number of redshifts for emulator generation=11 nk= 102
+Loading pre-trained GP for z:4.6
+Loading pre-trained GP for z:4.4
+Loading pre-trained GP for z:4.2
+Loading pre-trained GP for z:4.0
+Loading pre-trained GP for z:3.8
+Loading pre-trained GP for z:3.6
+Loading pre-trained GP for z:3.4
+Loading pre-trained GP for z:3.2
+Loading pre-trained GP for z:3.0
+Loading pre-trained GP for z:2.8
+Loading pre-trained GP for z:2.6
+Finished generating emulator at 2026-05-04 15:55:11.715531
+Loaded params from bestfit_z2.6-4.6.txt
+  Using 11 params for emulator prediction
+  Found 3 nuisance params for data corrections
+Redshift bins: [4.6 4.4 4.2 4.  3.8 3.6 3.4 3.2 3.  2.8 2.6]
+k modes per bin: 35
+P(k) range: [8.8099, 198.2619] km/s
+
+Dimensionless ratio range: [-0.0365, 0.0176]
+Physical signal T range:   [-1.856928, 0.463524] km/s
+Covariance diagonal range: [1.2711e-01, 7.3894e+02] (km/s)^2
+Signal^2 / variance range: [0.000000e+00, 7.845141e-01]  (dimensionless)
+
+CORRECTED Fisher results:
+  (S/N)^2       = 18.621574
+  S/N           = 4.315272
+  S/N DESI DR2  = 6.102716
+  S/N DESI full = 13.646089
+  Need Nx       = 0.2x BOSS DR14
+
+  Per-bin S/N:
+    z=4.60  S/N=0.000000
+    z=4.40  S/N=0.000000
+    z=4.20  S/N=0.000000
+    z=4.00  S/N=1.470313
+    z=3.80  S/N=1.389275
+    z=3.60  S/N=1.400295
+    z=3.40  S/N=1.241225
+    z=3.20  S/N=1.277560
+    z=3.00  S/N=1.700307
+    z=2.80  S/N=1.858766
+    z=2.60  S/N=1.746422
+
+Saved to /Users/helenagescu/lya_emulator/dde_analysis/results/fisher_corrected/fisher_corrected_no_z2p2_no_z2p4.txt
+
+
+=================================================================
+SUMMARY — CORRECTED vs PREVIOUS (incorrect) Fisher results
+=================================================================
+
+Config                      S/N (wrong)   S/N (correct)     Ratio   Need Nx
+---------------------------------------------------------------------------
+all_z                            0.2287        4.819419    21.073       0.2x
+no_z2p2                          0.2024        4.612809    22.791       0.2x
+no_z2p2_no_z2p4                  0.1742        4.315272    24.772       0.2x
+
+Plot saved to /Users/helenagescu/lya_emulator/dde_analysis/results/fisher_corrected/fisher_corrected_comparison.png
+
+DONE

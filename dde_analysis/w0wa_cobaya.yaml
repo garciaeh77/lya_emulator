@@ -1,0 +1,274 @@
+# ============================================================================
+# Cobaya input file for w0/wa dark-energy analysis
+# Likelihoods: Planck low-l + ACT DR6 + SPT-3G + DESI BAO + SN + H0
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# Theory Code
+# ----------------------------------------------------------------------------
+theory:
+  camb:
+    path: /home1/hgarciae/cobaya_packages/code/camb_cosmorec/CAMB
+    stop_at_error: false
+    extra_args:
+      kmax: 10
+      k_per_logint: 130
+      nonlinear: true
+      lens_potential_accuracy: 8
+      lens_margin: 2050
+      lAccuracyBoost: 1.2
+      min_l_logl_sampling: 6000
+      DoLateRadTruncation: false
+      recombination_model: CosmoRec
+      # Switch from EDE (EarlyQuintessence) to CPL w0/wa dark energy
+      dark_energy_model: ppf
+
+# ----------------------------------------------------------------------------
+# Likelihoods
+# ----------------------------------------------------------------------------
+likelihood:
+  # Supernovae
+  sn.desdovekie: null
+
+  # Local H0 measurement
+#  H0.riess2020: null
+
+  # Baryon Acoustic Oscillations
+  bao.desi_dr2: null
+
+  # Planck low-l (large scale)
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE_sroll2: null
+
+  # SPT-3G (via candl)
+  candl.interface.CandlCobayaLikelihood:
+    data_set_file: spt_candl_data.SPT3G_D1_TnE_lite
+
+# ----------------------------------------------------------------------------
+# Additional Priors
+# ----------------------------------------------------------------------------
+prior: {}
+
+# ----------------------------------------------------------------------------
+# Parameters
+# ----------------------------------------------------------------------------
+params:
+  # --- Calibration parameters ---
+  Tcal:
+    prior:
+      dist: norm
+      loc: 1.0
+      scale: 0.0036
+    ref:
+      dist: norm
+      loc: 1.0
+      scale: 5.0e-05
+    latex: T_{\rm cal}
+    proposal: 5.0e-05
+
+  Ecal:
+    prior:
+      min: 0.8
+      max: 1.2
+    ref: 1.0
+    latex: E_{\rm cal}
+
+  # --- Standard cosmological parameters ---
+  ombh2:
+    prior:
+      min: 0.005
+      max: 0.1
+    ref:
+      dist: norm
+      loc: 0.0224
+      scale: 0.0001
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b}h^2
+
+  omch2:
+    prior:
+      min: 0.001
+      max: 0.99
+    ref:
+      dist: norm
+      loc: 0.12
+      scale: 0.001
+    proposal: 0.0005
+    latex: \Omega_\mathrm{c}h^2
+
+  logA:
+    prior:
+      min: 2.0
+      max: 4.0
+    ref:
+      dist: norm
+      loc: 3.04
+      scale: 0.001
+    proposal: 0.001
+    latex: \log(10^{10} A_\mathrm{s})
+
+  ns:
+    prior:
+      min: 0.8
+      max: 1.2
+    ref:
+      dist: norm
+      loc: 0.965
+      scale: 0.004
+    proposal: 0.002
+    latex: n_\mathrm{s}
+
+  tau:
+    prior:
+      min: 0.01
+      max: 0.2
+    ref:
+      dist: norm
+      loc: 0.055
+      scale: 0.006
+    proposal: 0.003
+    latex: \tau_\mathrm{reio}
+
+  H0:
+    prior:
+      min: 40
+      max: 100
+    ref:
+      dist: norm
+      loc: 70.0
+      scale: 1.0
+    proposal: 1.0
+    latex: H_0 \ {\rm [km/s/Mpc]}
+
+  # --- Fixed parameters ---
+  mnu: 0.06
+
+  # --- w0/wa dark-energy parameters (CPL) ---
+  w:
+    prior:
+      min: -3.0
+      max: -0.3
+    ref:
+      dist: norm
+      loc: -1.0
+      scale: 0.05
+    proposal: 0.03
+    latex: w_0
+
+  wa:
+    prior:
+      min: -3.0
+      max: 3.0
+    ref:
+      dist: norm
+      loc: 0.0
+      scale: 0.2
+    proposal: 0.1
+    latex: w_a
+
+  # --- Derived parameters ---
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_\mathrm{s}
+    derived: true
+
+  A:
+    derived: 'lambda As: 1e9*As'
+    latex: 10^9 A_\mathrm{s}
+
+  clamp:
+    derived: 'lambda As, tau: 1e9*As*np.exp(-2*tau)'
+    latex: 10^9 A_\mathrm{s} e^{-2\tau}
+
+  omegam:
+    latex: \Omega_\mathrm{m}
+
+  omegamh2:
+    derived: 'lambda omegam, H0: omegam*(H0/100)**2'
+    latex: \Omega_\mathrm{m} h^2
+
+  omega_de:
+    latex: \Omega_\mathrm{DE}
+
+  sigma8:
+    latex: \sigma_8
+
+  s8:
+    derived: 'lambda sigma8, omegam: sigma8*(omegam/0.3)**0.5'
+    latex: S_8
+
+  s8h5:
+    derived: 'lambda sigma8, H0: sigma8*(H0*1e-2)**(-0.5)'
+    latex: \sigma_8/h^{0.5}
+
+  s8omegamp5:
+    derived: 'lambda sigma8, omegam: sigma8*omegam**0.5'
+    latex: \sigma_8 \Omega_\mathrm{m}^{0.5}
+
+  s8omegamp25:
+    derived: 'lambda sigma8, omegam: sigma8*omegam**0.25'
+    latex: \sigma_8 \Omega_\mathrm{m}^{0.25}
+
+  # --- BBN parameters ---
+  YHe:
+    latex: Y_\mathrm{P}
+
+  Y_p:
+    latex: Y_P^\mathrm{BBN}
+
+  DHBBN:
+    derived: 'lambda DH: 10**5*DH'
+    latex: 10^5 \mathrm{D}/\mathrm{H}
+
+  # --- Distance and redshift parameters ---
+  rdrag:
+    latex: r_\mathrm{drag}
+
+  rd:
+    derived: 'lambda rdrag: rdrag*1.0'
+    latex: r_\mathrm{d} \ {\rm [Mpc]}
+
+  rdragh:
+    derived: 'lambda rdrag, H0: rdrag*(H0/100)'
+    latex: r_\mathrm{drag} h \ {\rm [Mpc]}
+
+  rdh:
+    derived: 'lambda rdrag, H0: rdrag*(H0/100)'
+    latex: r_\mathrm{d} h \ {\rm [Mpc]}
+
+  zdrag:
+    latex: z_\mathrm{drag}
+
+  rstar:
+    latex: r_\star \ {\rm [Mpc]}
+
+  zstar:
+    latex: z_\star
+
+  thetastar:
+    latex: \theta_\star
+
+  thetad:
+    latex: \theta_\mathrm{d}
+
+  zrei:
+    latex: z_\mathrm{re}
+
+  age:
+    latex: '{\rm{Age}}/\mathrm{Gyr}'
+
+# ----------------------------------------------------------------------------
+# Sampler
+# ----------------------------------------------------------------------------
+sampler:
+  mcmc:
+    max_tries: .inf
+    oversample_power: 0.4
+    proposal_scale: 1.0
+    Rminus1_stop: 0.03
+    Rminus1_cl_stop: 0.2
+
+# ----------------------------------------------------------------------------
+# Output
+# ----------------------------------------------------------------------------
+output: w0wa_chains/spa_bao_ddov_w0wa

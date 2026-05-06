@@ -1,0 +1,28 @@
+DDE Fisher forecast — compressed P1D likelihood
+============================================================
+
+Pivot: z_star=3.0, k_star=0.009 km/s
+Union3 DDE shifts at pivot:
+  Delta2_star fractional shift: -0.000550
+  n_star additive shift:        -0.018511
+
+SDSS DR2 (McDonald+2006):
+  S/N      = 0.417500
+  Need Nx  = 22.9x
+
+SDSS DR9 (PD+2015):
+  S/N      = 2.212606
+  Need Nx  = 0.8x
+
+SDSS DR14a (Chabanier+2019):
+  S/N      = 3.586589
+  Need Nx  = 0.3x
+
+SDSS DR14b (Walther+2024):
+  S/N      = 3.561249
+  Need Nx  = 0.3x
+
+DESI DR1 (Chaves-Montero+2026):
+  S/N      = 0.990494
+  Need Nx  = 4.1x
+
