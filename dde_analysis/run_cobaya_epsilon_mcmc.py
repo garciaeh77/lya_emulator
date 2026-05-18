@@ -11,19 +11,28 @@ import numpy as np
 from cobaya.run import run as cobaya_run
 
 # Ensure repo root is importable so Cobaya can locate dde_analysis.*
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPO_ROOT)
 
 from lyaemu.likelihood import LikelihoodClass
 
 
-BASEDIR = "/Users/helenagescu/lya_emulator/dtau-48-48"
-TRAINDIR = "/Users/helenagescu/lya_emulator/dtau-48-48/trained_mf"
-OUTDIR = "/Users/helenagescu/lya_emulator/dde_analysis/results/chains_dde_epsilon"
-COVMAT_DDE = "/Users/helenagescu/lya_emulator/dde_analysis/results/covmats/simeon_plus_epsilon_15p.covmat"
+BASEDIR = os.environ.get("LYA_BASEDIR", os.path.join(REPO_ROOT, "dtau-48-48"))
+TRAINDIR = os.environ.get("LYA_TRAINDIR", os.path.join(BASEDIR, "trained_mf"))
+OUTDIR = os.environ.get(
+    "COBAYA_OUTDIR_DDE",
+    os.path.join(REPO_ROOT, "dde_analysis", "results", "chains_dde_epsilon"),
+)
+COVMAT_DDE = os.environ.get(
+    "COVMAT_DDE",
+    os.path.join(REPO_ROOT, "dde_analysis", "results", "covmats", "simeon_plus_epsilon_15p.covmat"),
+)
 os.makedirs(OUTDIR, exist_ok=True)
 
 
 def build_info():
+    use_covmat = os.environ.get("USE_DDE_COVMAT", "0") == "1"
+
     # Use baseline likelihood only to get parameter names/limits.
     lik = LikelihoodClass(
         basedir=BASEDIR,
@@ -54,6 +63,16 @@ def build_info():
         "latex": r"\epsilon",
     }
 
+    mcmc_cfg = {
+        "burn_in": 20000,
+        "max_samples": 80000,
+        "Rminus1_stop": 0.01,
+        "learn_proposal": True,
+        "output_every": "60s",
+    }
+    if use_covmat:
+        mcmc_cfg["covmat"] = COVMAT_DDE
+
     info = {
         "likelihood": {
             "dde_analysis.dde_cobaya_likelihood.CobayaDDELikelihoodClass": {
@@ -73,16 +92,7 @@ def build_info():
             }
         },
         "params": params,
-        "sampler": {
-            "mcmc": {
-                "burn_in": 20000,
-                "max_samples": 80000,
-                "Rminus1_stop": 0.01,
-                "learn_proposal": True,
-                "covmat": COVMAT_DDE,
-                "output_every": "60s",
-            }
-        },
+        "sampler": {"mcmc": mcmc_cfg},
         "output": os.path.join(OUTDIR, "dde_epsilon"),
     }
     return info
@@ -92,7 +102,10 @@ def main():
     info = build_info()
     print("Starting Cobaya MCMC with sampled epsilon...")
     print(f"Output prefix: {info['output']}")
-    print(f"Proposal covmat: {COVMAT_DDE}")
+    if "covmat" in info["sampler"]["mcmc"]:
+        print(f"Proposal covmat: {info['sampler']['mcmc']['covmat']}")
+    else:
+        print("Proposal covmat: disabled (learning proposal from scratch)")
     updated_info, sampler = cobaya_run(info, resume=True)
     print("Done.")
     return updated_info, sampler

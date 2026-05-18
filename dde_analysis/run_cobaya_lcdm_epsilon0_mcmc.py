@@ -11,15 +11,22 @@ from cobaya.run import run as cobaya_run
 import numpy as np
 
 # Ensure repo root is importable so Cobaya can locate dde_analysis.*
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, REPO_ROOT)
 
 from lyaemu.likelihood import LikelihoodClass
 
 
-BASEDIR = "/Users/helenagescu/lya_emulator/dtau-48-48"
-TRAINDIR = "/Users/helenagescu/lya_emulator/dtau-48-48/trained_mf"
-OUTDIR = "/Users/helenagescu/lya_emulator/dde_analysis/results/chains_lcdm_epsilon0"
-COVMAT_LCDM = "/Users/helenagescu/lya_emulator/dde_analysis/results/covmats/simeon_lcdm_14p.covmat"
+BASEDIR = os.environ.get("LYA_BASEDIR", os.path.join(REPO_ROOT, "dtau-48-48"))
+TRAINDIR = os.environ.get("LYA_TRAINDIR", os.path.join(BASEDIR, "trained_mf"))
+OUTDIR = os.environ.get(
+    "COBAYA_OUTDIR_LCDM",
+    os.path.join(REPO_ROOT, "dde_analysis", "results", "chains_lcdm_epsilon0"),
+)
+COVMAT_LCDM = os.environ.get(
+    "COVMAT_LCDM",
+    os.path.join(REPO_ROOT, "dde_analysis", "results", "covmats", "simeon_lcdm_14p.covmat"),
+)
 os.makedirs(OUTDIR, exist_ok=True)
 
 
@@ -56,7 +63,7 @@ def build_info():
     }
 
     # Start near known good point if available.
-    bestfit_file = "/Users/helenagescu/lya_emulator/dde_analysis/results/bestfit_from_chains.txt"
+    bestfit_file = os.path.join(REPO_ROOT, "dde_analysis", "results", "bestfit_from_chains.txt")
     if os.path.exists(bestfit_file):
         bf = np.loadtxt(bestfit_file).reshape(-1)
         if bf.size >= len(param_names):
